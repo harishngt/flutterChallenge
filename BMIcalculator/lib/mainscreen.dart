@@ -123,7 +123,7 @@ class _homepgState extends State<homepg> {
                                 MaterialStateProperty.all(Colors.orange),
                             foregroundColor:
                                 MaterialStateProperty.all(Colors.white)),
-                        child: Text('Calculate')))
+                        child: Text('Calculate'))),
               ],
             )
           ],
