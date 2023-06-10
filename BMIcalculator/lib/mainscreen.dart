@@ -12,11 +12,7 @@ class homepg extends StatefulWidget {
 }
 
 class _homepgState extends State<homepg> {
-  bool buttonindex = false;
-  List<String> chipcontent = [
-    'Male',
-    'Female',
-  ];
+  bool selected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,18 +61,68 @@ class _homepgState extends State<homepg> {
             SizedBox(
               height: 30,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (int i = 0; i < chipcontent.length; i++)
-                  chips(
-                    id: i,
-                    name: chipcontent[i],
-                  )
-              ],
+            Container(
+              alignment: Alignment.centerLeft,
+              height: 30,
+              child: Text(
+                "BMI Calculator",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
             SizedBox(
-              height: 70,
+              height: 30,
+            ),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selected = !selected;
+                });
+              },
+              child: Stack(
+                children: [
+                  Container(
+                    height: 40,
+                    width: 400,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.purple.withAlpha(100)),
+                  ),
+                  AnimatedPositioned(
+                    duration: Duration(seconds: 1),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          height: 40,
+                          width: selected ? 200 : 150,
+                          child: Text("Male"),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              color: selected
+                                  ? Colors.purple
+                                  : Colors.purple.withAlpha(0)),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          height: 40,
+                          width: selected ? 200 : 150,
+                          child: Text("Female"),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: selected
+                                ? Colors.purple
+                                : Colors.purple.withAlpha(0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,10 +133,24 @@ class _homepgState extends State<homepg> {
                       'Age:',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
+                    // Expanded(
+                    //   child: TextField(
+                    //     decoration: InputDecoration(
+                    //         enabledBorder: InputBorder(
+                    //             borderSide: BorderSide(
+                    //                 color: Colors.white.withAlpha(0))),
+                    //         focusedBorder: InputBorder(
+                    //             borderSide: BorderSide(color: Colors.white)),
+                    //         border: UnderlineInputBorder(
+                    //             borderSide: BorderSide(
+                    //                 color: Colors.white.withAlpha(0))),
+                    //         hintText: 'Enter Age'),
+                    //   ),
+                    // ),
                   ],
                 ),
                 SizedBox(
-                  height: 80,
+                  height: 70,
                 ),
                 Row(
                   children: [
@@ -127,39 +187,6 @@ class _homepgState extends State<homepg> {
               ],
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget chips({
-    int id = 0,
-    String name = 'Male',
-  }) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5),
-      width: 180,
-      child: TextButton(
-        onPressed: () {
-          buttonindex = true;
-        },
-        style: TextButton.styleFrom(
-          foregroundColor: Colors.white,
-          backgroundColor:
-              (buttonindex = true) ? (Colors.purple) : (Colors.pink),
-          padding: EdgeInsets.symmetric(
-            horizontal: 10,
-            vertical: 5,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        child: Text(
-          name,
-          style: TextStyle(
-            color: Colors.white,
-          ),
         ),
       ),
     );
