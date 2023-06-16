@@ -12,7 +12,7 @@ class homepg extends StatefulWidget {
 }
 
 class _homepgState extends State<homepg> {
-  String gender = 'male';
+  String gender = 'Male';
   String defweight = 'Kg';
   String defheight = 'Metres';
   late FocusNode myFocusNode;
@@ -97,10 +97,10 @@ class _homepgState extends State<homepg> {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(
                   onTap: () {
-                    if (gender == 'male')
-                      gender = 'female';
+                    if (gender == 'Male')
+                      gender = 'Female';
                     else
-                      gender = 'male';
+                      gender = 'Male';
                     setState(() {});
                   },
                   child: Stack(
@@ -115,7 +115,7 @@ class _homepgState extends State<homepg> {
                         ),
                       ),
                       AnimatedAlign(
-                        alignment: (gender == 'male')
+                        alignment: (gender == 'Male')
                             ? (Alignment.centerLeft)
                             : (Alignment.centerRight),
                         duration: Duration(milliseconds: 600),
@@ -144,7 +144,9 @@ class _homepgState extends State<homepg> {
                             Text(
                               'Male',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: (gender == 'Male')
+                                    ? Colors.white
+                                    : Colors.grey,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -153,7 +155,9 @@ class _homepgState extends State<homepg> {
                               'Female',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: (gender == 'Male')
+                                    ? Colors.grey
+                                    : Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -185,7 +189,7 @@ class _homepgState extends State<homepg> {
                         width: 75,
                         child: TextField(
                           textAlign: TextAlign.center,
-                          focusNode: myFocusNode,
+                          //focusNode: myFocusNode,
                           style: TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
@@ -218,7 +222,7 @@ class _homepgState extends State<homepg> {
                         width: 75,
                         child: TextField(
                           textAlign: TextAlign.center,
-                          focusNode: myFocusNode,
+                          //focusNode: myFocusNode,
                           style: TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
@@ -230,6 +234,89 @@ class _homepgState extends State<homepg> {
                               hintText: '0',
                               hintStyle: TextStyle(
                                   fontSize: 20, color: Colors.blueGrey)),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      Expanded(
+                        child: Container(
+                          //padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              if (defweight == 'Kg')
+                                defweight = 'Pound';
+                              else
+                                defweight = 'Kg';
+                              setState(() {});
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    //color: Colors.purple.withAlpha(90),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                ),
+                                AnimatedAlign(
+                                  alignment: (defweight == 'Kg')
+                                      ? (Alignment.centerLeft)
+                                      : (Alignment.centerRight),
+                                  duration: Duration(milliseconds: 600),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  child: Container(
+                                    height: 30,
+                                    width:
+                                        (MediaQuery.of(context).size.width) / 6,
+                                    decoration: BoxDecoration(
+                                      color: Colors.purple,
+                                      borderRadius: BorderRadius.circular(25),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withAlpha(120),
+                                          offset: Offset(0, 0),
+                                          blurRadius: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 150,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '    Kg',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: (defweight == 'Kg')
+                                              ? Colors.white
+                                              : Colors.grey,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Pound   ',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: (defweight == 'Kg')
+                                              ? Colors.grey
+                                              : Colors.white,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -251,7 +338,7 @@ class _homepgState extends State<homepg> {
                         width: 75,
                         child: TextField(
                           textAlign: TextAlign.center,
-                          focusNode: myFocusNode,
+                          // focusNode: myFocusNode,
                           style: TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
@@ -263,6 +350,89 @@ class _homepgState extends State<homepg> {
                               hintText: '0',
                               hintStyle: TextStyle(
                                   fontSize: 20, color: Colors.blueGrey)),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 35,
+                      ),
+                      Expanded(
+                        child: Container(
+                          //padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              if (defheight == 'Cm')
+                                defheight = 'Feet';
+                              else
+                                defheight = 'Cm';
+                              setState(() {});
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    //color: Colors.purple.withAlpha(90),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                ),
+                                AnimatedAlign(
+                                  alignment: (defheight == 'Cm')
+                                      ? (Alignment.centerLeft)
+                                      : (Alignment.centerRight),
+                                  duration: Duration(milliseconds: 600),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                  child: Container(
+                                    height: 30,
+                                    width:
+                                        (MediaQuery.of(context).size.width) / 6,
+                                    decoration: BoxDecoration(
+                                      color: Colors.purple,
+                                      borderRadius: BorderRadius.circular(25),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withAlpha(120),
+                                          offset: Offset(0, 0),
+                                          blurRadius: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 150,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '     Cm',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: (defheight == 'Cm')
+                                              ? Colors.white
+                                              : Colors.grey,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Feet       ',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: (defheight == 'Cm')
+                                              ? Colors.grey
+                                              : Colors.white,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
