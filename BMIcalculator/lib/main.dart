@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:challengetrial/mainscreen.dart';
+import 'package:challengetrial/bmicalc.dart';
 
 void main() {
   runApp(MyApp());

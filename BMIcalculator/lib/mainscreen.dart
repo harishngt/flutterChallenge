@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:challengetrial/bmicalc.dart';
 
 void main() {
   runApp(homepg());
@@ -14,7 +15,9 @@ class homepg extends StatefulWidget {
 class _homepgState extends State<homepg> {
   String gender = 'Male';
   String defweight = 'Kg';
-  String defheight = 'Metres';
+  String defheight = 'Cm';
+  final inheight = TextEditingController();
+  final inweight = TextEditingController();
   late FocusNode myFocusNode;
   //int age, weight, height;
   @override
@@ -221,6 +224,7 @@ class _homepgState extends State<homepg> {
                         height: 20,
                         width: 75,
                         child: TextField(
+                          controller: inweight,
                           textAlign: TextAlign.center,
                           //focusNode: myFocusNode,
                           style: TextStyle(color: Colors.white),
@@ -337,6 +341,7 @@ class _homepgState extends State<homepg> {
                         height: 20,
                         width: 75,
                         child: TextField(
+                          controller: inheight,
                           textAlign: TextAlign.center,
                           // focusNode: myFocusNode,
                           style: TextStyle(color: Colors.white),
@@ -444,7 +449,10 @@ class _homepgState extends State<homepg> {
                       width: width,
                       height: 50,
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            bmi = calculateBMI();
+                            showAlertDialog(context, bmi, result, description);
+                          },
                           style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.orange),
@@ -459,4 +467,31 @@ class _homepgState extends State<homepg> {
       ),
     );
   }
+}
+
+showAlertDialog(
+    BuildContext context, String bmi, String result, String description) {
+  widget okbtn = TextButton(
+    onPressed: () {},
+    child: Text("OK"),
+  );
+
+  AlertDialog alert = AlertDialog(
+    content: Column(
+      children: [
+        Text(bmi),
+        Text(result),
+        Text(description),
+      ],
+    ),
+    actions: [
+      okbtn,
+    ],
+  );
+
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      });
 }
