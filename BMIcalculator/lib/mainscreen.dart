@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:challengetrial/bmicalc.dart';
+
+import 'bmicalc.dart';
 
 void main() {
   runApp(homepg());
@@ -19,6 +20,7 @@ class _homepgState extends State<homepg> {
   final inheight = TextEditingController();
   final inweight = TextEditingController();
   late FocusNode myFocusNode;
+  CalculatorBrain calculatorBrain = CalculatorBrain();
   //int age, weight, height;
   @override
   void initState() {
@@ -229,15 +231,18 @@ class _homepgState extends State<homepg> {
                           //focusNode: myFocusNode,
                           style: TextStyle(color: Colors.white),
                           decoration: const InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 1)),
-                              focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.white, width: 1)),
-                              hintText: '0',
-                              hintStyle: TextStyle(
-                                  fontSize: 20, color: Colors.blueGrey)),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 1),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 1),
+                            ),
+                            hintText: '0',
+                            hintStyle:
+                                TextStyle(fontSize: 20, color: Colors.blueGrey),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -450,8 +455,16 @@ class _homepgState extends State<homepg> {
                       height: 50,
                       child: TextButton(
                           onPressed: () {
-                            bmi = calculateBMI();
-                            showAlertDialog(context, bmi, result, description);
+                            if (inheight.text != '' && inweight.text != '') {
+                              double bmi = calculatorBrain.calculateBMI(
+                                  inheight: double.parse(inheight.text),
+                                  inweight: double.parse(inweight.text));
+                              showAlertDialog(
+                                  context,
+                                  bmi.toString(),
+                                  calculatorBrain.getResult(),
+                                  calculatorBrain.getInterpretation());
+                            }
                           },
                           style: ButtonStyle(
                               backgroundColor:
@@ -471,7 +484,7 @@ class _homepgState extends State<homepg> {
 
 showAlertDialog(
     BuildContext context, String bmi, String result, String description) {
-  widget okbtn = TextButton(
+  Widget okbtn = TextButton(
     onPressed: () {},
     child: Text("OK"),
   );

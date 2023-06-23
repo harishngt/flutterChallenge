@@ -1,19 +1,18 @@
 import 'dart:math';
-import 'package:challengetrial/mainscreen.dart';
 
 class CalculatorBrain {
-  CalculatorBrain({this.inheight, this.inweight});
+  // final int inheight;
+  // final int inweight;
 
-  final int inheight;
-  final int inweight;
+  double _bmi = 0;
 
-  double _bmi;
-
-  String calculateBMI() {
+  // to calculate bmi
+  double calculateBMI({required double inheight, required double inweight}) {
     _bmi = inweight / pow(inheight / 100, 2);
-    return _bmi.toStringAsFixed(1);
+    return double.parse(_bmi.toStringAsFixed(1));
   }
 
+  // bmi string result
   String getResult() {
     if (_bmi >= 25) {
       return 'Overweight';
